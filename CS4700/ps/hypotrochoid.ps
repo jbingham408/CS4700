@@ -1,0 +1,47 @@
+% Be sure to DOCUMENT the operator especially inputs
+% and outputs.
+% Jason Bingham
+% PS assignment
+
+/hypotrochoid { 1 dict begin
+	%stores number
+	/number exch def
+	%stores the arm
+	/arm exch def
+	%stores the small circle radius
+	/radSmall exch def
+	%stores the big circle radius
+	/radBig exch def
+	
+	%starts the drawing
+	newpath
+	200 300 moveto
+	
+	%loops 360 times
+	0 1 360 
+	{
+		%stores the loop number
+		/i exch def
+		%stores t
+		/t i number mul def
+		%calculates x
+		/x 300 radBig radSmall sub t cos mul arm radBig radSmall sub t mul radSmall div cos mul add add def
+		%calculates y
+		/y 300 radBig radSmall sub t sin mul arm radBig radSmall sub t mul radSmall div sin mul sub add def
+		%checks if i is 0
+		i 0 eq
+		%if 0 then it moves away from the center
+		{
+			x y moveto
+		}
+		%if not 0 then draws a line
+		{
+			x y lineto
+		}
+		ifelse
+	}
+	for
+
+	closepath
+	stroke
+end} def

@@ -1,0 +1,74 @@
+% Be sure to DOCUMENT the operator especially inputs
+% and outputs.
+% Jason Bingham
+% PS assignment
+
+/fractal { 1 dict begin
+
+%stores the number of fractals
+/num exch def
+
+%draws the triangle
+/triangle
+{
+	%starts the new drawing
+	newpath
+	0 0 moveto
+	%draws the first edge
+	width length lineto
+	%draws the second edge
+	width 2 mul 0 lineto
+	%draws the last edge
+	closepath
+	stroke
+}def
+
+%checks if num is more than 0
+num 0 gt
+{
+	%sets width to half the width of the triangle
+	/width 50 def
+	%sets the triangles length
+	/length 100 def
+
+	%draws the triangle
+	triangle
+	% reduces num by 1
+	/newNum num 1 sub def
+	%saves the state
+	gsave
+	
+	%checks if num is 0
+	newNum 0 gt
+	{
+		%sets x to 0 subtracted by half of width 
+		/x 0 width 2 div sub def
+		%sets y	to 0 subtracted by half of length
+		/y 0 length 2 div sub def
+		%moves the origin
+		x y translate
+		%change the scale
+		.5 .5 scale
+		%draws the next triangle 
+		newNum fractal
+		%restores the state
+		grestore
+		%saves the state
+		gsave
+		%sets x to 0 added by width times 2
+		/x 0 width 2 mul add width 2 div sub def
+		%sets y
+		/y 0 length 2 div sub def
+		%moves the origin
+		x y translate
+		.5 .5 scale
+		%draws the next triangle
+		newNum fractal
+	}
+	if
+	grestore
+}
+if
+end} def
+
+showpage

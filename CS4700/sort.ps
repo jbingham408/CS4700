@@ -1,0 +1,31 @@
+% Be sure to DOCUMENT the operator especially inputs
+% and outputs.
+/sort { 1 dict begin
+
+count
+{
+	count 0 ne
+	{
+		count 1 gt
+		{
+			/y exch def
+			/x exch def
+			x y gt
+			{
+				y sort x
+			}
+			{
+				x sort y
+			}
+			ifelse
+		}
+		{
+			/x exch def
+			x
+		}
+		ifelse
+	}
+	if
+}repeat
+end
+} def

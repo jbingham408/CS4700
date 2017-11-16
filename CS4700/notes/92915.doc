@@ -1,0 +1,26 @@
+﻿CS 4700 9/29/15
+
+A language is a set of strings
+a string/program is a finite sequence of characters chosen from an alphabet.
+A grammar is a set of rules that describe the syntactically legal sentence
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Lexical analyzer → converts program into a sequence of tokens
+	-could ignore
+		-whitespace
+		-comments
+		-pre-processor
+tokens → word in vocabulary of language

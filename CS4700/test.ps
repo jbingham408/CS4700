@@ -1,0 +1,33 @@
+/test{ 1 dict begin
+/max count 1 sub def
+/ar count array def
+max 0 gt
+{
+0 1 max 1 sub
+{
+	/i exch def
+	/n exch def
+	ar i n put
+}for
+
+max 1 sub -1 0
+{
+	/i exch def
+	/highest ar max 1 sub get def
+	highest ar i get lt
+	{
+		ar max 1 sub ar i get put
+		ar i highest put
+	}
+	if
+}for
+
+max 2 sub -1 0
+{
+	/i exch def
+	ar i get
+}for
+test ar max 1 sub get
+}
+if
+end }def

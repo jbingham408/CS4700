@@ -1,0 +1,60 @@
+% Be sure to DOCUMENT the operator especially inputs
+% and outputs.
+% Jason Bingham
+% PS assignment
+
+/sort { 1 dict begin
+
+	%store the max number of values going into the array
+	/max count 1 sub def
+	%create the array
+	/ar count array def
+
+	%makes sure that it is done with all the values
+	max 0 gt
+	{
+		%loops to get all the values off the stack
+		0 1 max 1 sub
+		{
+			%stores the location in the array
+			/i exch def
+			%stores the value off the stack
+			/n exch def
+			%puts the value in the array
+			ar i n put
+		}
+		for
+
+		%loops through to put the highest values at the end of the array
+		max 1 sub -1 0
+		{
+			%stores the location in the array
+			/i exch def
+			%stores the current highest number
+			/highest ar max 1 sub get def
+			%checks if the next number on the list is greater than what is in highest
+			highest ar i get lt
+			{
+				%if the next number is higher, the values are switched
+				ar max 1 sub ar i get put
+				ar i highest put
+			}
+			if
+		}
+		for
+
+		%puts all the values from the array onto the stack except the highest value
+		max 2 sub -1 0
+		{
+			%stores the spot in the array
+			/i exch def
+			%prints out the value
+			ar i get
+		}
+		for
+	
+		%recursive call and prints out the highest value
+		sort ar max 1 sub get
+	}
+	if
+end} def
